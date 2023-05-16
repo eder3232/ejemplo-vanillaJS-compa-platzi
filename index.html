@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .card {
+        width: 300px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script>
+      const data = [
+        {
+          imgSrc: './images/2023-05-15_18h21_49.png',
+          title: 'duchas',
+          altDescription: 'duchas frias',
+          hashtag: '#blogs',
+          description: 'descripcion',
+          date: 'hoy xd',
+        },
+        {
+          imgSrc: './images/2023-05-15_18h22_04.png',
+          title: 'duchas',
+          altDescription: 'duchas frias',
+          hashtag: '#blogs',
+          description: 'descripcion',
+          date: 'hoy xd',
+        },
+        {
+          imgSrc: './images/2023-05-15_21h55_30.png',
+          title: 'duchas',
+          altDescription: 'duchas frias',
+          hashtag: '#blogs',
+          description: 'descripcion',
+          date: 'hoy xd',
+        },
+      ]
+
+      class CardBlog {
+        constructor({ imgSrc, title, hashtag, description, date }) {
+          this.imgSrc = imgSrc
+          this.title = title
+          this.hashtag = hashtag
+          this.description = description
+          this.date = date
+          return this.createCard()
+        }
+
+        createCard() {
+          const d = document
+          const cardBlog = d.createElement('SECTION')
+          cardBlog.classList.add('card')
+          const containerImage = d.createElement('figure')
+          const pictureImage = d.createElement('picture')
+          const imageCard = d.createElement('img')
+          imageCard.setAttribute('src', this.imgSrc)
+          imageCard.classList.add('card')
+
+          pictureImage.appendChild(imageCard)
+          containerImage.appendChild(pictureImage)
+          cardBlog.appendChild(containerImage)
+          return cardBlog
+        }
+      }
+
+      class CardBlog2 extends CardBlog {
+        constructor({ imgSrc, title }) {
+          return super({
+            imgSrc,
+            title,
+            hashtag: 'default hasthag',
+            description: 'default description',
+            date: 'default date',
+          })
+        }
+      }
+
+      const $div = document.getElementById('container')
+      const fragment = document.createDocumentFragment()
+      data.map((e) => {
+        fragment.appendChild(new CardBlog(e))
+      })
+
+      const imagenExtraniana = new CardBlog2({
+        imgSrc: 'http://placekitten.com/200/300',
+        title: 'gatito',
+      })
+
+      fragment.appendChild(imagenExtraniana)
+      $div.appendChild(fragment)
+    </script>
+  </body>
+</html>
